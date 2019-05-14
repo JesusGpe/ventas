@@ -53,7 +53,7 @@
                                 <td><?php echo $row["nombre"] ?></td>
                                 <td><?php echo $row["descripcion"] ?></td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#registerModal" onclick="edit = true" data-id = "<?php echo $row['id'] ?>"
+                                    <button class="btn btn-sm btn-warning btnEditar" data-toggle="modal" data-target="#registerModal"  data-id = "<?php echo $row['id'] ?>"
                                         data-nombre="<?php echo $row['nombre'] ?>" data-descripcion="<?php echo $row['descripcion'] ?>"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-sm btn-danger" onclick="eliminar(<?php echo $row['id']; ?>)"><i class="fa fa-trash"></i></button>
                                 </td>
@@ -109,7 +109,7 @@
             </div>
             <div class="form-group">
               <label>Descripcion</label>
-              <input type="text" name="descripcion" class="form-control" id="precio">
+              <input type="text" name="descripcion" class="form-control" id="descripcion">
             </div>
             <div id="mensaje"></div>
             <div class="modal-footer">

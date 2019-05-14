@@ -14,7 +14,7 @@ $(document).ready(function(){
 		  	var modal = $(this);
 		  	modal.find('#id').val(id);
 		  	modal.find('#nombre').val(nombre);
-		  	modal.find('#precio').val(descripcion);
+		  	modal.find('#descripcion').val(descripcion);
 		}
 	});
 
@@ -26,6 +26,11 @@ $(document).ready(function(){
 		modal.find('#precio').val('');
 		edit = false;
 	});
+
+	$( ".btnEditar" ).click(function() 
+	{
+		edit = true;
+	});
 });
 
 $("#frm-registrar").submit(function( event ) {
@@ -34,13 +39,23 @@ $("#frm-registrar").submit(function( event ) {
 	if(edit){
 		opc = "editar"
 	}
-	var data = $(this).serialize() + "&opc="+opc;
+		
+	var id = $("#id").val();
+	var nombre = $("#nombre").val();
+	var descripcion = $("#descripcion").val();
+	var objParam = {
+				'opc':opc,
+				'id' : id,
+				'nombre': nombre,
+				'descripcion': descripcion
+				};
+
 	$.ajax({
 	    cache: false,
 	    url: 'ajax/categorias.php',
 	    type: 'POST',
 	    dataType: 'JSON',
-	    data: data,
+	    data: objParam,
 	    success: function(response) {
 	    	if(!response.error){
 	    		$("#mensaje").html('<div class="alert alert-success text-center" role="alert">¡'+response.mensaje+'!</div>');
