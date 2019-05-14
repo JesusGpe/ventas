@@ -39,7 +39,7 @@ $("#frm-registrar").submit(function( event ) {
 	if(edit){
 		opc = "editar"
 	}
-		
+
 	var id = $("#id").val();
 	var nombre = $("#nombre").val();
 	var descripcion = $("#descripcion").val();
@@ -52,7 +52,7 @@ $("#frm-registrar").submit(function( event ) {
 
 	$.ajax({
 	    cache: false,
-	    url: 'ajax/categorias.php',
+	    url: 'php/RouterCategoria.php',
 	    type: 'POST',
 	    dataType: 'JSON',
 	    data: objParam,
@@ -77,14 +77,14 @@ function eliminar(id){
 	  function() {
 	  	$.ajax({
 		    cache: false,
-		    url: 'ajax/categorias.php',
+		    url: 'php/RouterCategoria.php',
 		    type: 'POST',
 		    dataType: 'JSON',
 		    data: {id:id,opc:'eliminar'},
 		    success: function(response) {
 		    	if(!response.error){
 		    		console.log(response);
-
+		    		$("#mensaje").html('<div class="alert alert-success text-center" role="alert">¡'+response.mensaje+'!</div>');
 		    		setTimeout(function(){
 		    			location.href="categorias.php";
 		    		},2000);
