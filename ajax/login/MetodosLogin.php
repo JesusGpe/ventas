@@ -17,34 +17,45 @@ class MetodosLogin
 			try 
 			{
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, "http://10.44.150.211:8080/wsventas/getUsuarioLoginWS");
+				curl_setopt($ch, CURLOPT_URL, "http://10.44.150.211:8081/wsventas/getUsuarioLoginWS");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_POST, true);
 				curl_setopt($ch, CURLOPT_POSTFIELDS,$parametros);
-				$datosResponse = curl_exec($ch);
-				curl_close($ch); 
-				$datos['infoResponse'] = json_decode($datosResponse);
-				$datos['mensajeWS'] = "Servicio getUsuarioLoginWS, Parametros:". $parametros .", Fue Ejecutado Correctamente!.";
-				
+				if (curl_exec($ch)) {
+					$datosResponse = curl_exec($ch);
+					curl_close($ch); 
+					$datos['infoResponse'] = json_decode($datosResponse);
+					$datos['mensajeWS'] = "Servicio getUsuarioLoginWS, Parametros:". $parametros .", Fue Ejecutado Correctamente!.";
 
-				$data = json_decode($datosResponse);
-				$user = $data->respuesta;
-				$_SESSION["id"] = $user->id;
-				$_SESSION["nombre"] = $user->nombre;
-				$_SESSION["apellido"] = $user->apellido;
-				$_SESSION["email"] = $user->email;
-				$_SESSION["password"] = $user->password;
-				if ($user->id == 0) 
-				{
-					$datos['respuesta'] = 3;
-					$datos['mensaje'] = "El Usuario o Contraseña es incorrecta";
+					$data = json_decode($datosResponse);
+					$user = $data->respuesta;
+					$_SESSION["id"] = $user->id;
+					$_SESSION["nombre"] = $user->nombre;
+					$_SESSION["apellido"] = $user->apellido;
+					$_SESSION["email"] = $user->email;
+					$_SESSION["password"] = $user->password;
+					if ($user->id == 0) 
+					{
+						$datos['respuesta'] = 3;
+						$datos['mensaje'] = "El Usuario o Contraseña es incorrecta";
+					}
+					else
+					{
+						 
+						$datos['mensaje'] = "Bienvenido " . $user->nombre;
+						$datos['respuesta'] = 1;
+					}
 				}
 				else
 				{
-					 
-					$datos['mensaje'] = "Bienvenido " . $user->nombre;
-					$datos['respuesta'] = 1;
+					$datos['mensajeWS'] = "Error al ejecutar el Servicio getUsuarioLoginWS!.";
+					$datos['respuesta'] = 4;
+					$datos['mensaje'] = "Error de Conexion Con Web Service wsventas, Metodo -> getUsuarioLoginWS";
 				}
+				
+				
+
+				
 			} 
 			catch (Exception $e) 
 			{
