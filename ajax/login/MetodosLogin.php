@@ -6,6 +6,7 @@ class MetodosLogin
 		$datos = array();
 		$datosResponse = array();
 		$datos['mensaje'] = "";
+		$datos['mensajeWS'] = "";
 		$datos['respuesta'] = 0;
 		$datos['infoResponse'];
 
@@ -23,8 +24,8 @@ class MetodosLogin
 				$datosResponse = curl_exec($ch);
 				curl_close($ch); 
 				$datos['infoResponse'] = json_decode($datosResponse);
-				$datos['mensaje'] = "Servicio getUsuarioLoginWS, Parametros:". $parametros .", Fue Ejecutado Correctamente!.";
-				$datos['respuesta'] = 1;
+				$datos['mensajeWS'] = "Servicio getUsuarioLoginWS, Parametros:". $parametros .", Fue Ejecutado Correctamente!.";
+				
 
 				$data = json_decode($datosResponse);
 				$user = $data->respuesta;
@@ -33,11 +34,22 @@ class MetodosLogin
 				$_SESSION["apellido"] = $user->apellido;
 				$_SESSION["email"] = $user->email;
 				$_SESSION["password"] = $user->password;
+				if ($user->id == 0) 
+				{
+					$datos['respuesta'] = 3;
+					$datos['mensaje'] = "El Usuario o Contraseña es incorrecta";
+				}
+				else
+				{
+					 
+					$datos['mensaje'] = "Bienvenido " . $user->nombre;
+					$datos['respuesta'] = 1;
+				}
 			} 
 			catch (Exception $e) 
 			{
 				$datos['respuesta'] = -1;
-				$datos['mensaje'] = "Parametros: " . $parametros . ", Error:" . $e;
+				$datos['mensajeWS'] = "Parametros: " . $parametros . ", Error:" . $e;
 				$datos['infoResponse'] = null;
 			}
 		}

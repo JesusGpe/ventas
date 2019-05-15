@@ -18,10 +18,11 @@ $(document).ready(function(){
             dataType: 'JSON',
             data: objParam,
             success: function(response) {
+            	console.log(response);
                 if(response.respuesta == 1){
                 	var infoRespuestaWS = response.infoResponse;
                 	var usuario = infoRespuestaWS.respuesta
-                    $("#mensaje").html('<div class="alert alert-success text-center" role="alert">¡ Bienvenido ' + usuario.nombre + '!</div>');
+                    $("#mensaje").html('<div class="alert alert-success text-center" role="alert">¡' + response.mensaje + '!</div>');
                     setTimeout(function(){
                         location.href="home.php";
                     },2000);
