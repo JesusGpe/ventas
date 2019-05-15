@@ -41,10 +41,10 @@
                   </div>
                   <form class="user" id="frm-login">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Ingresa tu direccion de correo...">
+                      <input type="email" class="form-control form-control-user" name="email" id="email" aria-describedby="emailHelp" placeholder="Ingresa tu direccion de correo...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="password" placeholder="Contraseña">
+                      <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Contraseña">
                     </div>
                     <div id="mensaje"></div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">Ingresar</button>
@@ -72,9 +72,9 @@
 
   <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    
+    <script src="js/login.js"></script>
     <script>
-        $(document).ready(function(){
+       /* $(document).ready(function(){
             $("#frm-login").submit(function( event ) {
                 event.preventDefault();
                 var data = $(this).serialize();
@@ -100,7 +100,7 @@
                     }
                 });
             });
-        });
+        });*/
     </script>
 </body>
 
