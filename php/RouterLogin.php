@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include_once("../objetos/Usuarios.php");
 include_once("../ajax/login/MetodosLogin.php");
 error_reporting(E_ERROR);

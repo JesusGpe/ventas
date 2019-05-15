@@ -25,6 +25,14 @@ class MetodosLogin
 				$datos['infoResponse'] = json_decode($datosResponse);
 				$datos['mensaje'] = "Servicio getUsuarioLoginWS, Parametros:". $parametros .", Fue Ejecutado Correctamente!.";
 				$datos['respuesta'] = 1;
+
+				$data = json_decode($datosResponse);
+				$user = $data->respuesta;
+				$_SESSION["id"] = $user->id;
+				$_SESSION["nombre"] = $user->nombre;
+				$_SESSION["apellido"] = $user->apellido;
+				$_SESSION["email"] = $user->email;
+				$_SESSION["password"] = $user->password;
 			} 
 			catch (Exception $e) 
 			{
@@ -38,6 +46,7 @@ class MetodosLogin
 			$datos['respuesta'] = 2;
 			$datos['mensaje'] = "No se admiten datos nulos, verifique el envio de datos. Request = " . $pEmail . "-" . $pPassword;
 		}
+
 		echo json_encode($datos);		
 
 	}

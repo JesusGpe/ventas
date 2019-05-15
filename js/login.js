@@ -10,7 +10,6 @@ $(document).ready(function(){
 				'email' : email,
 				'password' : password				
 				};
-		console.log(objParam);
 
         $.ajax({
             cache: false,
@@ -19,9 +18,10 @@ $(document).ready(function(){
             dataType: 'JSON',
             data: objParam,
             success: function(response) {
-                console.log(response);
                 if(response.respuesta == 1){
-                    $("#mensaje").html('<div class="alert alert-success text-center" role="alert">¡ '+response.mensaje+'!</div>');
+                	var infoRespuestaWS = response.infoResponse;
+                	var usuario = infoRespuestaWS.respuesta
+                    $("#mensaje").html('<div class="alert alert-success text-center" role="alert">¡ Bienvenido ' + usuario.nombre + '!</div>');
                     setTimeout(function(){
                         location.href="home.php";
                     },2000);
