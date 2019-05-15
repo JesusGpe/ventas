@@ -1,0 +1,12 @@
+[2019-05-15 23:10:40.][INFORMATIVO].:: 										::Ventas :: 										:: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: Inicia Metodo -> iniciarSesion([aldo@gmail.com],[123]); :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: Validacion -> if ([aldo@gmail.com] != "" && [ 123] != "") :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: URL de servicio -> [http://10.44.150.211:8081/wsventas/getUsuarioLoginWS] :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: Parametros -> [email=aldo@gmail.com&password=123] :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: Servicio Ejecutado Correctamente :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: Response WS -> {"resultadoOperacion":1,"mensaje":"Informacion obtenida con exito!.","respuesta":{"id":1,"nombre":"Aldo Alejandro","apellido":"Sanchez Felix","email":"aldo@gmail.com","password":"123"}} :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: Validacion -> if ([Aldo Alejandro]  == null || [Aldo Alejandro]  == "") :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: Creacion De Variables De SESSION :: . 
+[2019-05-15 23:10:40.][WARNING].:: Ventas :: [Bienvenido Aldo Alejandro] :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: Ventas :: Finaliza Metodo -> iniciarSesion(aldo@gmail.com,123); :: . 
+[2019-05-15 23:10:40.][INFORMATIVO].:: 										::Ventas :: 										:: . 
